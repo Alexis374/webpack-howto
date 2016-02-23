@@ -113,7 +113,7 @@ module.exports = {
   }
 };
 ```
-
+** babel-preset-2015 babel-preset-react 要全局安装 **
 ## 5. Css样式和图片的加载
 
 首先你需要用`require()`去加载你的静态资源(named as they would with node's `require()`):
@@ -185,6 +185,7 @@ module.exports = {
 
 配置完成后，就可以使用 `BUILD_DEV=1 BUILD_PRERELEASE=1 webpack`来打包代码了。
 值得注意的是，`webpack -p` 会删除所有无作用代码，也就是说那些包裹在这些全局变量下的代码块都会被删除，这样就能保证这些代码不会因发布上线而泄露。
+** 代码中会以真实的值代替 __DEV__  __PRERELEASE__ **
 
 ## 7. 多个入口文件
 
@@ -242,7 +243,7 @@ module.exports = {
 ```js
 if (window.location.pathname === '/feed') {
   showLoadingState();
-  require.ensure([], function() { // 这个语法痕奇怪，但是还是可以起作用的
+  require.ensure([], function() { // 这个语法很奇怪，但是还是可以起作用的
     hideLoadingState();
     require('./feed').show(); // 当这个函数被调用的时候，此模块是一定已经被同步加载下来了
   });
